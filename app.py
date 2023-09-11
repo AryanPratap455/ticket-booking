@@ -12,7 +12,7 @@ app.secret_key='Abcd1234'
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///Admindatabase.db'
 app.config['SQLALCHEMY_TRACK_NOTIFICATIONS']=False
 db=SQLAlchemy(app)
-db.init_app(app)
+#db.init_app(app)
 app.app_context().push()
 
                        # Table field
