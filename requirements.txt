@@ -19,6 +19,7 @@ Markdown==3.4.1
 MarkupSafe 
 marshmallow==3.19.0
 packaging==22.0
+passlib
 Pillow==9.4.0
 python-dateutil 
 python-slugify==7.0.0
