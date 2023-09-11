@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>confirm booking</title>
+    <style>
+        body {
+            font-size: 20px;
+            border-color: black;
+            border-style: solid;
+            width: 70%;
+            min-height: 300px;
+            margin: auto;
+            padding-bottom: 200px;
+            padding-top: 20px;
+        }
+        .navbar {
+            display: flex;
+            flex-direction: row;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div style="flex-basis:1000px;">User's Dashboard </div>
+        <div style="margin-right:10px"><a href="{{url_for('user_logout')}}"> Logout</a></div>
+    </div>
+    </div>
+    <hr>
+   Confirm you booking here ------
+    <div class="container" style="text-align:center; padding-top:50px;">
+        {% if shov.venue.capacity-sum <= 0 %}
+        Available seat is : 0 <br> <br>
+        seat is full you cannot book any show now...
+        {% else %}
+        <form action="/confirm_booking/{{shov.show_id}}" , method="POST">
+            <label>Available seats:{{shov.venue.capacity-sum}} </label><br>
+            <br>
+            You can book less than or equal to available seats.
+            <br><br>
+            <label>Number of seats :</label>
+            <input type="integer" name="seat" , /><br>
+            <br>
+            <label>Price per seat:</label>
+            <input type="integer" name="price" value="{{shov.price}}"/><br>
+            <br>
+            <br>
+            <input type="submit" value="Confirm Booking">
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User profile</title>
+    <style>
+        body {
+            border-color: black;
+            border-style: solid;
+            width: 70%;
+            min-height: fit-content;
+            margin: auto;
+            padding-bottom: 100px;
+            padding-top: 20px;
+            font-size: 20px;
+        }
+        .navbar {
+            display: flex;
+            flex-direction: row;
+            margin-left: 30px;
+        }
+        .content{
+            width:60%;
+            margin:auto;
+            border:1px solid black;
+            margin-top:8%;
+            padding-bottom: 5%;
+            border-radius: 20%;
+        }
+        .yid{
+            margin-left:25%;
+            margin-top: 8%;
+        }
+        .action{
+            margin:5%;
+            margin-bottom:0%;
+            text-align: center;
+        }
+       
+        button{
+            width:100px;
+            height:100px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div style="flex-basis:900px;">{{usar.user_email}}</div>
+        <div style="margin-right:25%;"><b>ProfilePage</b></div>
+        <div><a href="{{url_for('user_booked_page')}}">Booking</a></div>
+        <div style="margin-left:20px"> <a href="{{url_for('user_dashboard')}}"> Home </a></div>
+        <div style="margin-left:20px"><a href="{{url_for('user_logout')}}"> Logout</a></div>
+    </div>
+    <hr>
+   <div class="content">
+        <div class="yid">Your user_id : <b>{{usar.user_id}}</b></div>
+        <div class="yid">Your email_id : <b>{{usar.user_email}}</b></div>
+   </div>
+   <div class="action">
+        <div class="butt"><a href="/user_account_delete/{{usar.user_email}}"><button> Delete Account</button></a></div>
+   </div>
+</body>
+</html>

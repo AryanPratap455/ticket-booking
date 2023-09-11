@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create venue</title>
+    <style>
+        body {
+            font-size: 21px;
+            border-color: black;
+            border-style: solid;
+            margin-left: 400px;
+            margin-right: 400px;
+            margin-top: 50px;
+            margin-bottom: 200px;
+            padding-bottom: 200px;
+            padding-top: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            flex-direction: row;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div style="flex-basis:800px;">Admin Dashboard </div>
+        <div>Summary |</div>
+        <div><a href="{{url_for('admin_logout')}}"> Logout</a></div>
+    </div>
+    </div>
+    <hr>
+    Create a new venue
+    <div class="container" style="text-align:center; padding-top:50px;">
+        <form action="/create_venue" , method="POST">
+            <label>Venue Name</label>
+            <input type="text" name="venue-name" /><br>
+            <br>
+            <label>Place</label>
+            <input type="text" name="place" /><br>
+            <br>
+            <label>Location</label>
+            <input type="text" name="location" /><br>
+            <br>
+            <label>capacity</label>
+            <input type="integer" name="capacity" /><br>
+            <br>
+            <br>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</body>
+
+</html>

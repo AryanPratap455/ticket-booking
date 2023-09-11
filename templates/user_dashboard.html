@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        .navbar{
+            border:2px solid;
+            border-color: black;
+            width:100%;
+            height:65px;
+            margin-bottom: 40px;
+            display: flex;
+            line-height: 65px;
+            justify-content:space-evenly ;
+        }
+        .box{
+            width:60%;
+            min-height:600px;
+            border:2px solid;
+            border-color: black;
+            margin-left:20%;
+            padding-bottom:3%;
+        }
+        .content{
+            border:2px solid;
+            border-color: black;
+            width:80% ;
+            height:120px;
+            margin-left:5%;
+            margin-top:5%;
+        }
+        .ven{
+            border:1px solid black;
+            width:8%;
+            height:100%;
+            line-height: 130px;
+            padding-left: 2%;
+            float: left;
+        }
+        .shov{
+            border-radius: 10%;
+            border:1px solid black;
+            width:20%;
+            margin-left:3%;
+            margin-top:1%;
+            height:80%;
+            float:left;
+            text-align: center;
+        }
+        h3{
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="navbar">
+            <div class="user">user email-:-{{usar.user_email}}</div>
+            <div><b>Home page</b></div>
+            <div class="profile"><a href="{{url_for('user_profile')}}">Profile</a> </div>
+            <div class="booking"><a href="{{url_for('user_booked_page')}}">Booking</a> </div>
+            <div><a href="{{url_for('user_logout')}}"> Logout</a></div>
+            <div><a href="{{url_for('search')}}"> Search</a></div>
+        </div>
+        {% if deta|length==0 %}
+        <h3>No show has created yet </h3>
+        {% else %}
+        {% for data in datas %}
+        <div class="content">
+            <div class="ven">{{data.venue_name}}</div>
+            {% for each in deta %}
+            {% if each.venue_id==data.venue_id %}
+            <div class="shov">
+                <div class="cont" style="margin-top: 5px;font-size:15px">{{each.show_name}} </div>
+                <div class="cont" style="margin-top: 5px;font-size:15px"> {{each.time}}</div>
+                <div class="foot" style="margin-top:20px">
+                    <a href="/confirm_booking/{{each.show_id}}"><button>Book</button></a> 
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

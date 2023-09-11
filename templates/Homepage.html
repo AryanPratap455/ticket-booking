@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body{
+           width:60%;
+           min-height: 500px;
+           margin:auto;
+           border:3px solid black;
+           text-align: center;
+        }
+        .content1{
+            width:40%;
+            min-height: 200px;
+            border:2px solid black;
+            float:left;
+            text-align: center;
+            margin-left: 5%;
+        }
+        .content2{
+            width:40%;
+            min-height: 200px;
+            border:2px solid black;
+            float:right;
+            text-align: center;
+            margin-right: 5%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Movie ticket booking</h1><br>
+    <div class="content1">
+        <h3>Admin Block</h3>
+        <div><a href="{{url_for('admin_register')}}" type="button">Admin Registration</a></div>
+        <div style="margin-top:4%;"><a href="{{url_for('admin_login')}}" type="button">Admin Login</a></div>
+    </div>
+    <div class="content2">
+        <h3>User block</h3>
+        <div><a href="{{url_for('user_register')}}" type="button">User Registration</a></div>
+        <div style="margin-top:4%;"><a href="{{url_for('user_login')}}" type="button">User Login</a></div>
+    </div>
+</body>
+</html>

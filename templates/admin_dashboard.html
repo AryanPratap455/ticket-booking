@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            border-color: black;
+            border-style: solid;
+            width: 70%;
+            min-height: 700px;
+            margin: auto;
+            padding-bottom: 200px;
+            padding-top: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            flex-direction: row;
+            margin-left: 30px;
+        }
+
+        .box {
+            border-radius: 10%;
+            width: 45%;
+            min-height: 450px;
+            border-color: black;
+            border-style: solid;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .ven {
+            height: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 50px;
+        }
+
+        .show {
+            border: 2px solid black;
+            width: 90% auto;
+            min-height: 300px;
+        }
+
+        .button {
+            text-align: center;
+        }
+
+        .inbox {
+            text-align: center;
+            margin-top: 10px;
+            width: 80%;
+            border: 1px solid black;
+            min-height: 100px;
+            margin-left: 10px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            line-height: 100px;
+        }
+
+        .container {
+            width: 40%;
+            margin-left: 20px;
+            min-height: 150px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div style="flex-basis:800px;">Admin Dashboard </div>
+        <div><a href="{{url_for('summary')}}">Summary</a> </div>
+        <div><a href="{{url_for('admin_logout')}}"> Logout</a></div>
+    </div>
+    </div>
+    <hr>
+    {% if data|length==0 %}
+    No show or venue is created
+    <div class="link" style="text-align:center"><a href="{{url_for('create_venue')}}"><button>+Create venue</button></a></div>
+    {% else %}
+    <div class="link" style="text-align:center"><a href="{{url_for('create_venue')}}"><button>+Create more venue
+                </button></a></div>
+    {% for deta in data %}
+    <div class="box">
+        <div class="ven">{{deta.venue_name}}</div>
+        <div class="show">
+            <div style="text-align:center"><a href="{{url_for('create_show')}}"><button>Create show</button></a></div>
+            {% if show_data|length==0 %}
+            <div style="text-align:center; line-height:100px;">No show has created yet</div>
+            {% else %}
+            {% for shov in show_data %}
+            {% if deta.venue_id == shov.venue_id %}
+            <div class="container">
+                <div class="inbox">
+                    {{shov.show_name}}
+                </div>
+                <div class="show-button" style="margin:auto">
+                    <a href="/update_show/{{shov.show_name}}"><button style="margin-left:30px">Edit</button></a>
+                    <a href="/show_delete/{{shov.show_id}}"><button style="margin-left:10px">Delete</button></a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="button" style="margin-top:20px">
+            venue action :
+            <a href="/update/{{deta.venue_name}}"><button style="margin-left:10px">Edit</button></a>
+            <a href="/delete/{{deta.venue_name}}"><button style="margin-left:10px">Delete</button></a>
+        </div>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

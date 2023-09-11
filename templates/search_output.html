@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search output</title>
+    <style>
+        body{
+            width:40%;
+            min-height: 400px;
+            margin:auto;
+            border:3px solid black;
+            text-align: center;
+         }
+    </style>
+</head>
+<body>
+    {% if out|length==0 %}
+      <div style="margin-top:30px"> No data is present</div> <br>
+    {% else %}
+    <div style="margin-top:20px"> Your searched data is given below...</div>
+       {% for each in out %}
+        <div style="margin-top:30px;margin-bottom:30px"> -> <a href="{{url_for('user_dashboard')}}">{{each.venue_name}} <b> {{each.place}} </b>{{each.location}}</a> </div>
+       {% endfor %}
+    {% endif %}
+    <a href="{{url_for('user_dashboard')}}">Go to homepage </a>
+</body>
+</html>

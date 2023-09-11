@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User booked page</title>
+    <style>
+        body {
+            border-color: black;
+            border-style: solid;
+            width: 70%;
+            min-height: 500px;
+            margin: auto;
+            padding-bottom: 200px;
+            padding-top: 20px;
+            font-size: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            flex-direction: row;
+            margin-left: 30px;
+        }
+
+        .content {
+            border: 2px solid;
+            border-color: black;
+            width: 90%;
+            height: 80px;
+            margin-left: 5%;
+            margin-top: 4%;
+            border-radius: 5%;
+            display: flex;
+        }
+
+        .start {
+            line-height: 80px;
+            margin-left: 2%;
+          
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div style="flex-basis:1000px;">{{z.user_email}} <b>Show booked page</b> </div>
+        <div><a href="{{url_for('user_profile')}}">Profile</a></div>
+        <div style="margin-left:20px"> <a href="{{url_for('user_dashboard')}}"> Home </a></div>
+        <div style="margin-left:20px"><a href="{{url_for('user_logout')}}"> Logout</a></div>
+    </div>
+    <hr>
+    {% if books|length==0 %}
+    <br>
+        No show has booked yet
+    {% else %}
+    <div style="text-align:center">Your booked show is given below</div>
+    {% for book in books %}
+        {% if book.user_id==z.user_id %}
+            <div class="content">
+                <div class="start">{{book.show.venue.venue_name}}-</div>
+                <div class="start">show name : {{book.show.show_name}}</div>
+                <div class="start" style="margin-left:20%;"> {{book.show.time}}</div>
+                <div class="start" style="margin-left:15%;"> Rating: {{book.show.rating}}</div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+</body>
+</html>
